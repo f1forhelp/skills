@@ -56,7 +56,7 @@ Every episode lives in \`episode/<N>_episode/\` and contains:
 - \`EPISODE_<N>.md\` — Episode overview and scene index
 - \`scenes/\` — Numbered sequentially across the episode (\`scene_1/\`, \`scene_2/\`, …). Each scene is a self-sufficient folder for **one continuous camera angle** (moving or locked-off, no cuts), containing:
   - \`SCENE_<M>.md\` — The scene's act, dialogue, reference table and generation prompt
-  - \`keyframe/\` — Keyframe images for that scene, named clearly (e.g. \`scene_<M>_start.png\`, \`scene_<M>_end.png\`)
+  - \`keyframe/\` — Keyframe images for that scene, labeled \`scene_<M>_<K>.<ext>\` (e.g. \`scene_1_1.png\`, \`scene_1_2.png\`), since a single scene can have multiple keyframes
   - \`render/\` — Individual video renders for that scene
 - \`render_temp/\` — Temporary / work-in-progress stitched episode videos assembled from scenes
 - \`render_final/\` — The final stitched episode video assembled from the approved scene renders
@@ -79,7 +79,7 @@ Every episode lives in \`episode/<N>_episode/\` and contains:
 - **Add new material in one place.** Put a new asset in its folder (\`audio/voice/\` for character voices, \`audio/sound/\` for other sounds) and describe it in the matching \`.md\` file inside that folder. For a new category, create a new folder with its \`.md\` file and add a row to the table above. For a new episode, create \`episode/<N>_episode/\` with \`EPISODE_<N>.md\`, \`scenes/\` (each \`scene_<M>/\` containing \`SCENE_<M>.md\`, \`keyframe/\` and \`render/\`), \`render_temp/\` and \`render_final/\`, and add a row to the episode table in [STORY.md](STORY.md).
 - **Generation costs credits.** Confirm the model, duration and resolution with the user before submitting any paid external generation job, and don't submit test runs.
 - **Scene renders vs. episode stitched renders.**
-  - Save each scene's keyframes in \`episode/<N>_episode/scenes/scene_<M>/keyframe/\` (\`scene_<M>_start.png\`, \`scene_<M>_end.png\`) and its generated video clips in \`episode/<N>_episode/scenes/scene_<M>/render/\`.
+  - Save each scene's keyframes in \`episode/<N>_episode/scenes/scene_<M>/keyframe/\` labeled as \`scene_<M>_<K>.<ext>\` (e.g. \`scene_1_1.png\`, \`scene_1_2.png\`) and its generated video clips in \`episode/<N>_episode/scenes/scene_<M>/render/\`.
   - Use \`episode/<N>_episode/render_temp/\` and \`episode/<N>_episode/render_final/\` strictly for the stitched video joined across scenes (temporary stitched cuts in \`render_temp/\`, final stitched episode video in \`render_final/\`).
 EOF
   echo "Created: $TARGET_DIR/AGENTS.md"
@@ -234,7 +234,7 @@ EOF
       cat <<EOF > "$SC_FILE"
 # Episode ${ep} — Scene ${sc}: <Scene Title>
 
-> Part of [Episode ${ep}](../../EPISODE_${ep}.md). Keyframes go in [\`keyframe/\`](keyframe/) and renders go in [\`render/\`](render/).
+> Part of [Episode ${ep}](../../EPISODE_${ep}.md). Keyframes go in [\`keyframe/\`](keyframe/) (labeled \`scene_${sc}_<K>.<ext>\`, e.g. \`scene_${sc}_1.png\`, \`scene_${sc}_2.png\`) and renders go in [\`render/\`](render/).
 
 ## Act
 

@@ -1,5 +1,5 @@
 ---
-name: episodic-show-blueprint
+name: skill-episodic-show-blueprint
 description: >-
   Scaffold the initial folder structure and placeholder markdown documentation
   blueprint for any episode-based show (drama, K-drama, cartoon, anime, web series,
@@ -42,7 +42,7 @@ This skill is strictly a **project scaffolder**. It does **not** contain rules o
         └── scenes/
             └── scene_1/
                 ├── SCENE_1.md                # Placeholder for Scene 1 act, dialogue, references, and prompt
-                ├── keyframe/                 # Folder for Scene 1 keyframe images
+                ├── keyframe/                 # Folder for Scene 1 keyframe images (e.g. scene_1_1.png, scene_1_2.png)
                 └── render/                   # Folder for Scene 1 video renders
 ```
 
@@ -53,7 +53,7 @@ This skill is strictly a **project scaffolder**. It does **not** contain rules o
 1. **Normalized Structure:** Each piece of information has one dedicated file (`STORY.md`, `characters/CHARACTER.md`, `audio/AUDIO.md`, `props/PROPS.md`, `locations/LOCATIONS.md`, `weather/WEATHER.md`, `episode/<N>_episode/EPISODE_<N>.md`, `episode/<N>_episode/scenes/scene_<M>/SCENE_<M>.md`). Files link to one another using relative markdown paths rather than duplicating facts.
 2. **One Camera Angle Per Scene:** Each `scene_<M>/` folder inside `episode/<N>_episode/scenes/` represents a single continuous camera angle (no cuts). A new scene folder is used whenever the camera angle changes.
 3. **Separated Scene vs. Episode Renders:**
-   - Individual scene keyframes live in `episode/<N>_episode/scenes/scene_<M>/keyframe/`.
+   - Individual scene keyframes live in `episode/<N>_episode/scenes/scene_<M>/keyframe/` and are labeled `scene_<M>_<K>.<ext>` (e.g. `scene_1_1.png`, `scene_1_2.png`), as a single scene can have multiple keyframes.
    - Individual scene renders live in `episode/<N>_episode/scenes/scene_<M>/render/`.
    - Stitched episode cuts live in `episode/<N>_episode/render_temp/` (WIP) and `episode/<N>_episode/render_final/` (final).
 
